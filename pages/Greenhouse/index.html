@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/styles.css" rel="stylesheet">
+    <script>
+      var currentPos=0,
+          cards = document.getElementsByClassName("card");
+      
+      function backCard()
+              {if(currentPos !== 0)
+	         {cards[currentPos--].style.display = "none";
+		  cards[currentPos].style.display = "block";
+		  }
+	       }
+	      
+      function nextCard()
+              {if(currentPos !== cards.length - 1)
+	         {cards[currentPos++].style.display = "none";
+		  cards[currentPos].style.display = "block";
+		  }
+	       }
+    </script>
+  </head>
+  <body>
+    <main>
+    <!-- card 1 -->
+    <div class="card" id="card1">
+    <h1 style="border:none; color:#0088cc">Green House Effect</h1>
+    </div>
+    <!-- card 2 -->
+    <div class="card">
+      <h1 >Let's learn the basics</h1>
+      <h2>Learning about light</h2>
+      <div style="padding:0">
+      <div class="slideshow">
+	<div class="myslide fade">
+	  <img src="img/rainbow.jpg" style="width:100%"/>
+	  <div class="text">Rainbow</div>
+	</div>
+	<div class="myslide fade">
+	  <img src="img/dispersion.jpg" style="width:100%"/>
+	  <div class="text">Dispersion</div>
+	</div>
+	
+	<a class="prev" onclick="plusSlide(-1);">&#10094</a>
+	<a class="next" onclick="plusSlide(1);">&#10095</a>
+      </div>
+      <div class="dots">
+	<span class="dot"></span>
+	<span class="dot"></span>
+      </div>
+      
+      <p style="margin-left:2px">The sunlight consists of many different colors as you can see in a rainbow or when you pass sunlight through a prism.</p>
+      </div>
+      <p>Of the seven colors below the violet color is most energetic and the energy decreases in going towards red color, which is least energetic.</p>
+      <img src="img/spectrum.png" style="border: 2px solid gray"/>
+      <p>Apart from the colors observed in above pictures, the sunlight also contains radiations that are not visible to our eyes.<br/>Among these you might have heard of <i>Ultraviolet</i> light, <i>Infrared</i> light, etc.</p>
+      <p>The ultraviolet light is more energetic than the violet light whereas the Infrared light is even less energetic than the red light</p>
+    </div>
+    <!-- card 3 -->
+    <div class="card">
+      <h1>Let's learn the basics</h1>
+      <h2>An object can cool down by emitting radiation</h2>
+      <p>Every object emits light. The kind of light emitted depends on the temperature of the body. The sun being very hot emits high-energy light whereas objects at low temperature emit infrared light.</p>
+      <p>When you leave a bicycle exposed in the sunlight you know how hot it becomes but eventhough the sunlight keeps falling on it the temperature of the bicylce doesn't keep on increasing. Why?</p>
+      <p>It is because as the temperature of bicycle increases it emits more and more infrared light and thus releasing some heat back to air. Thus maintaining the temperature of the bicycle at some high temperature.</p>
+      <p>The emitted infrared light is absorbed by the air and the air becomes warm.</p>
+    </div>
+    <!-- card 4 -->
+    <div class="card">
+      <h1>Greenhouse Effect</h1>
+      <p>The sunlight falls on the earth. The ultraviolet light, and all colors from violet to red can easily pass through the earth atmosphere. The rocks, water, and other bodies on earth absorb some light and reflect the remaining light back to atmosphere, which then leaves the earth.</p>
+      <img src="img/sunlight.jpeg" style="border:2px solid gray"/>
+      <p>As the surface of earth absorb light it heats up and emits more infrared light. But infrared light cannot pass through our atmosphere and thus gets trapped in the atmosphere.</p>
+      <img src="img/infrared_absorption.svg" style="border:2px solid gray"/>
+      <p>The air then absorbs the infrared light and heats up which in turn emits infrared light, part of which is absorbed by the surface again. This process prevents the surface from cooling rapidly.</p>
+      <p>The above process, called <i>Greenhouse effect</i>, keeps our earth warm and suitable for life. Without greenhouse effect our earth would be about 33°C cooler and many living beings would freeze and could not survive.
+    </div>
+    <!-- card 5 -->
+    <div class="card">
+      <h1>Greenhouse Gases</h1>
+      <p>As you have seen it is the atmosphere that absorbs infrared light emitted from the surface of earth and thus causing the earth to remain warm. But the earth atmosphere consists of many gases like Hydrogen, Oxygen, Nitrogen, Carbon Dioxide, etc. Do all these gases in the air absorb infrared light?</p>
+      <img src="img/infrared_absorption.svg" style="border:2px solid gray"/>
+      <p>No, not all gases absorb infrared light. The gases in the air that absorb infrared light are called <i>Greenhouse gases</i>. Some major greenhouse gases are: Carbon Dioxide, Methane, Chlorofloro carbon. Water vapour also absorb infrared light and thus is also responsible for greenhouse effect.</p>
+    </div>
+    
+    <script>
+      for(var i=0; i < cards.length; ++i)
+         {if(i !== 0)
+	     cards[i].style.display = "none";
+	  }
+    </script>
+    <script>
+      var slideIndex = 1;
+      showSlide(slideIndex);
+      
+      function plusSlide(n)
+         {showSlide(slideIndex += n);}
+	 
+      function showSlide(n)
+         {var i;
+	  var slides = document.getElementsByClassName("myslide");
+	  var dots = document.getElementsByClassName("dot");
+	  if(n>slides.length)
+	     slideIndex=1;
+	  if(n<1)
+	     slideIndex=slides.length;
+	  for(i=0; i<slides.length;++i)
+	      slides[i].style.display="none";
+	  for(i=0; i<dots.length;++i)
+	      dots[i].className = dots[i].className.replace(" active", "");
+	  slides[slideIndex-1].style.display="block";
+	  dots[slideIndex-1].className += " active";
+	  }
+    </script>
+    </main>
+    <footer>
+    <button id="back" onclick="backCard();">Back</button>
+    <button id="next" onclick="nextCard();">Next</button>
+    </footer>
+  </body>
+</html>		

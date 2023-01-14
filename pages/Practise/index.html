@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/styles.css" rel="stylesheet">
+    <script>
+      var currentPos=0,
+          cards = document.getElementsByClassName("card");
+      
+      function backCard()
+              {if(currentPos !== 0)
+	         {cards[currentPos--].style.display = "none";
+		  cards[currentPos].style.display = "block";
+		  }
+	       }
+	      
+      function nextCard()
+              {if(currentPos !== cards.length - 1)
+	         {cards[currentPos++].style.display = "none";
+		  cards[currentPos].style.display = "block";
+		  }
+	       }
+    </script>
+  </head>
+  <body>
+    <main>
+      <!-- card 1 -->
+      <div class="card" id="card1">
+	<h1>Skills</h1>
+	<p>Physical skills are skills at some organized motion of any set of body parts.</p>
+	<img src="img/basketball.png"/>
+	<p>For example playing a basket ball is a physical skill as it constitutes an organized motion of set of body parts like hands, legs, shoulders, etc.</p>
+	<img src="img/calligraphy.jpg"/>
+	<p>Calligraphy is also another physical skill. It involves very organized and fine movements of fingers and hand. Other examples of physical skills are playing guitar, skating, cycling, etc.</p>
+	<p>Not all skills are physical i.e. not all skills require an organized motion of some muscles. There are skills that don't involve any such organized motion of muscles. For instance, reading skill does not require you to have any muscle movement. Though eye movement, head movement, or may be speaking is involved in reading but they are not really the part of reading skill. After all you don't require to have any organized movement of eye or head in order to be a better reader nor do you need to speak in order to read effectively, it might be effective during initial stage Reading involves processing the information taken by eye in the brain. Other examples are writing, analytical skill, etc.</p>
+      </div>
+    <!-- card 2 -->
+    <div class="card">
+      <h1>Practise</h1>
+      <!--
+      <div style="padding:0">
+      <div class="slideshow">
+	<div class="myslide fade">
+	  <img src="img/rainbow.jpg" style="width:100%"/>
+	  <div class="text">Rainbow</div>
+	</div>
+	<div class="myslide fade">
+	  <img src="img/dispersion.jpg" style="width:100%"/>
+	  <div class="text">Dispersion</div>
+	</div>
+	
+	<a class="prev" onclick="plusSlide(-1);">&#10094</a>
+	<a class="next" onclick="plusSlide(1);">&#10095</a>
+      </div>
+      <div class="dots">
+	<span class="dot"></span>
+	<span class="dot"></span>
+      </div>
+      
+      <p style="margin-left:2px">The sunlight consists of many different colors as you can see in a rainbow or when you pass sunlight through a prism.</p>
+      </div>-->
+      <p>Now coming to the physical skill, learning any skill isn't just only thing that's needed to be a good performer. In order to perform more like an expert requires practise.</p>
+      <p>Practise is the repetition of the action that involves in the skill with the goal to performing more better.</p>
+      <p>Now what actually happens in our brain when we practise any physical skill? To understand this lets learn a bit about brain functioning.</p>
+    </div>
+    <!-- card 3 -->
+    <div class="card">
+      <h1>Lets learn the basics</h1>
+      <h2>Neurons are the carrier of information</h2>
+      <img src="img/neuron.png"/>
+      <p>A neuron is a cell that carries information from brain to the spinal cord or vice versa. A neuron consists of a cell body and a long tail called axon.</p>
+      <p>Axon carries information in the form of electrical signals.</p>
+      <img src="img/myelin.png"/>
+      <p>The axons are covered with an insulation made up of substance called lipid. This insulation layer is called myelin sheath.The myelin prevents electrical signal in the axon from being disrupted and it faciliates the propagation of signal through axon.</p>
+    </div>
+    <!-- card 4 -->
+    <div class="card">
+      <h1>Lets learn the basics</h1>
+      <h2>Gray and White matters</h2>
+      <img src="img/matters.jpg"/>
+      <p>There are regions in the brain, called gray matter, that consists primarily of the cell bodies of neurons. The axons extending from cell bodies in gray matter are clustered in a region in brain called white matter. From the white matter these axons extends to the spinal cord.</p>
+      <p>The gray matter processes information that our brain collects from surrounding by our senses. And then sends the instructions like move hand, fingers, head, etc.</p>
+      <video controls>
+	<source src="video/movement.mp4" type="video/mp4">
+      </video>
+      <p>This instruction is carried by the neurons along their axons, which is then received by muscles and then it moves.</p>
+    </div>
+    <!-- card 5 -->
+    <div class="card">
+      <h1>Link between practise and inner working of brain</h1>
+      <img src="img/rat_study.jpg"/>
+      <p>In the studies on rats it has been found that repetition of physical motion increases the layers of myelin sheath that insulates the axon.</p>
+      <video controls>
+	<source src="video/myelin_development.mp4" type="video/mp4">
+      </video>
+      <p>Thus creating a more efficient route for the information to travel from the brain to the muscles. So it appears that it might be that one of the connections between practise and improvement in the physical skill is due to the development of more efficient neural pathways.</p>
+    </div>
+    
+    <script>
+      for(var i=0; i < cards.length; ++i)
+         {if(i !== 0)
+	     cards[i].style.display = "none";
+	  }
+    </script>
+    <script>
+      var slideIndex = 1;
+      showSlide(slideIndex);
+      
+      function plusSlide(n)
+         {showSlide(slideIndex += n);}
+	 
+      function showSlide(n)
+         {var i;
+	  var slides = document.getElementsByClassName("myslide");
+	  var dots = document.getElementsByClassName("dot");
+	  if(n>slides.length)
+	     slideIndex=1;
+	  if(n<1)
+	     slideIndex=slides.length;
+	  for(i=0; i<slides.length;++i)
+	      slides[i].style.display="none";
+	  for(i=0; i<dots.length;++i)
+	      dots[i].className = dots[i].className.replace(" active", "");
+	  slides[slideIndex-1].style.display="block";
+	  dots[slideIndex-1].className += " active";
+	  }
+    </script>
+    </main>
+    <footer>
+    <button id="back" onclick="backCard();">Back</button>
+    <button id="next" onclick="nextCard();">Next</button>
+    </footer>
+  </body>
+</html>		

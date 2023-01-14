@@ -1,0 +1,162 @@
+body
+   {font-size:3rem;
+    font-family:sans-serif;
+    height:100%;
+    background-color:#ffffec;
+    }
+   
+p
+   {line-height:70px;
+    color:#004444;}
+i
+   {color:#00334d;}
+    
+main
+   {padding:0px;
+    width:93%;
+    margin-top:20px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:60px;
+    border-radius:20px;
+    box-shadow:0px 40px 20px -22px #aaaa9d;
+    background-color:#80d4ff;
+    }
+  
+.card
+  {padding:5px 33px;}
+  
+#card1
+   {height:750px;
+    background-image:url(../img/greenhouse_effect.jpg);
+    background-position:center;
+    background-size:cover;
+    border-radius:20px;
+    }
+    
+h1
+  {box-sizing:border-box;
+   text-align:center;
+   padding-bottom:40px;
+   border-radius:20px;
+   color:#005580;
+   border-bottom:2px solid #558daa;
+   }
+h2
+  {text-align:center;
+   color:#003955;}
+   
+.slideshow
+   {box-sizing:border-box;
+    width:100%;
+    position:relative;
+    margin:auto;
+    padding:0;
+    }
+.myslide
+   {box-sizing:border-box;
+    width:100%;
+    padding:0;
+    display:none;
+    }
+.prev, .next
+   {box-sizing:border-box;
+    display:block;
+    cursor:pointer;
+    position:absolute;
+    top:50%;
+    height:100px;
+    width:70px;
+    margin-top:-30px;
+    padding:30px 26px;
+    color:white;
+    font-weight:bold;
+    font-size:35px;
+    transition:0.6s ease;
+    border-radius:0 3px 3px 0;
+    user-select:none;}
+.next
+   {right:0;
+    border-radius:3px 0 0 3px;}
+.prev:hover, .next:hover
+   {background-color:rgba(0,0,0,0.8);}
+/*Caption Text*/
+.text
+   {box-sizing:border-box;
+    color:#f2f2f2;
+    font-size:35px;
+    padding:8px 12px;
+    position:absolute;
+    bottom:20px;
+    margin-left:0;
+    width:100%;
+    text-align:center;
+    background-color:rgba(85,85,85,0.8);}
+.dot
+   {cursor:pointer;
+    height:15px;
+    width:15px;
+    margin:0 10px;
+    background-color:#bbb;
+    border-radius:50%;
+    display:inline-block;
+    transition:background-color 0.6s ease;}
+.active, .dot:hover
+   {background-color:#717171;}
+.fade
+   {-webkit-animation-name:fade;
+    -webkit-animation-duration:1.5s;
+    animation-name:fade;
+    animation-duration:1.5s;}
+@-webkit-keyframes fade
+   {from:{opacity:0.4}
+    to:{opacity:1}}
+@keyframes fade
+   {from:{opacity:0.4}
+    to:{opacity:1}}
+.dots
+   {text-align:center; 
+    box-shadow:0 15px 30px -18px hsl(200,15%,30%);
+    }
+
+img
+   {display:block;
+    width:100%;
+    max-height:600px;
+    border:0px solid #73ad21;
+    }
+    
+#def
+   {font-size:1.6em;}
+ul
+   {padding-left:40px;}
+li
+   {margin-top:0.4em;
+    padding-left:20px;
+   }
+    
+footer
+     {box-sizing:border-box;
+      width:100%;
+      height:2.5em;
+      position:relative;
+      vertical-align:baseline;
+      }
+
+button
+    {display:inline-block;
+     position: absolute;
+     bottom:0;
+     /*-ms-transform:translateY(-50%);
+     transform:translateY(-50%);*/
+     width:35%;
+     height:2em;
+     font-size: 4rem;
+     font-style:sans-serif;
+     border-radius:10px;
+     background-color:#adebad;
+     border-color:#98e698;
+     }
+     
+#back{left:8%;}
+#next{right:8%;}

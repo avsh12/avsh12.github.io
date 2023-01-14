@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles/styles.css" rel="stylesheet"/>
+    <script src="js/raphael.js"></script>
+    <script>
+      var currentPos = 0,
+          //array to store Raphael figure objects
+          figarray = [],
+	  //store the ids of the container of figure
+	  fig_id_array = [],
+          //find all the cards
+          cards = document.getElementsByClassName("card"),
+          // variables for width and height of figure containers
+	  valx = [], valy = [];
+	  
+      function backCard()
+           {if(currentPos !== 0)
+	      {cards[currentPos--].style.display="none";
+	       cards[currentPos].style.display="block";
+	       }
+	    }
+	   
+      function nextCard()
+           {if(currentPos !== (cards.length-1))
+	      {cards[currentPos++].style.display="none";
+	       cards[currentPos].style.display="block";
+	       }//window.alert(valx[1]/2+"  "+valy[1]/2);
+	     }
+	    
+      function clockBody(canvas, cx, cy,radius)
+                       {canvas.setStart();
+		        //border styling
+			canvas.circle(cx,cy,radius*1.2143).attr({stroke:"black", "stroke-width":0, gradient:"r#fff-#dd0:91.175-#cc0:98-#bbbb00"});
+			canvas.circle(cx,cy,radius*1.10714).attr({stroke:"#b5b500", "stroke-width":2.2, gradient:"r#fff-#ee0:95.697-#dd0"});
+                        canvas.circle(cx,cy,radius*1.0595).attr({stroke:"#bb0", "stroke-width":2, gradient:"r#fff-#cc0:94.38-#ff0:97.2-#ee0"});
+                        //clock body
+                        canvas.circle(cx,cy, radius).attr({stroke:"black", "stroke-width":0, fill:"#ffffd1"});
+                        canvas.circle(cx,cy,0.0333*radius).attr({fill:"black"});
+                        
+			var x0, y0, x1, y1, x2, y2, length;
+                        for(var theta = 0; theta <= 360; theta = theta+6)
+                           {//components of unit vector inclined at angle theta with x axis
+	                    x0 = Math.cos(theta*Math.PI/180);
+	                    y0 = Math.sin(theta*Math.PI/180);
+	            
+			    //length of marks
+	                    length = radius*(theta%30 === 0 ? 0.06 : 0.0267);
+	  
+			    //starting point of marks
+	                    x1 = cx + (radius-length) * x0;
+	                    y1 = cy + (radius-length) * y0;
+	  
+			    //end point of marks
+			    x2 = cx + radius * x0;
+			    y2 = cy + radius * y0;
+	  
+			    //drawing marks
+			    canvas.path(`M ${x1} ${y1} L ${x2} ${y2}`).attr({stroke:"black", "stroke-width":0.005*radius});
+			    
+			    /*let v = 100+ 50, w =100;
+			    canvas.text( v, w, 3);
+			    canvas.circle( v, w, 3);
+			    v = 100; w =100 + 50;
+			    canvas.text( v, w, 3);
+			    canvas.circle( v, w, 3);
+			    v = 50; w =100;
+			    canvas.text( v, w, 3);
+			    canvas.circle( v, w, 3);*/
+			    
+			    //Numbering hour marks
+			    var hr = (theta/30 + 3)%13 + (theta >= 300 ? 1 : 0);
+			    if(theta%30 === 0 && theta !== 360)
+			      {canvas.text(x1 - 1.2*length*x0, y1 - 1.2*length*y0, hr).attr({"font-size":0.1167*radius});
+			       //let v = 100+ 50 * Math.cos(theta*Math.PI/180), w =100 + 50 * Math.sin(theta*Math.PI/180);
+			       //canvas.text( v, w, "12");
+			       }
+			    }
+			return canvas.setFinish();
+                        }
+      function secHand(canvas, cx, cy, radius)
+		       {//Second hand
+                        var second = canvas.path(`M ${cx} ${cy + 0.15*radius} 
+			                         L ${cx} ${cy-0.9167*radius}`)
+						.attr({stroke:"black", "stroke-width":3});
+                        return second;
+			}
+			
+      function minHand(canvas, cx, cy, radius)
+		       {//Minute hand 
+                        var minute = canvas.path(`M${cx-0.01*radius} ${cy}
+			                         L${cx-0.05*radius} ${cy-0.5*radius} 
+						 Q${cx} ${cy-0.567*radius}, 
+						  ${cx} ${cy-0.9167*radius} 
+						 Q${cx} ${cy-0.567*radius}, 
+						  ${cx + 0.05*radius} ${cy- 0.5*radius} 
+						 L ${cx+0.01*radius} ${cy}`)
+						 .attr({fill:"black", stroke:"black", "stroke-width":2});
+                        return minute;
+			}
+      function hrHand(canvas, cx, cy, radius)
+		       {//Hour hand
+                        var hour = canvas.path(`M${cx-0.01*radius} ${cy} 
+			                       L${cx-0.0333*radius} ${cy - 0.3365*radius}, 
+					       Q${cx} ${cy-0.3814*radius},
+					        ${cx} ${cy-radius*0.61692} 
+					       Q${cx} ${cy-radius*0.3814}, 
+					        ${cx + radius*0.0333} ${cy-radius*.3365} 
+					       L${cx+radius*0.01} ${cy}`).attr({fill:"black", stroke:"black", "stroke-width":2});
+                        return hour;
+			}
+	     
+      function Clock(container, radius, width, height, x, y)
+             {let val = Number(container[3]);
+	      
+	      if(x === undefined)
+	         x = valx[val-1]/2;
+	      if(y === undefined)
+	         y = valy[val-1]/2;
+	      if(width === undefined)
+	         width = valx[val-1];
+	      if(height === undefined)
+	         height = valy[val-1];
+	      if(width !== undefined && x === undefined)
+	         x = width/2;
+	      if(height!== undefined && y ===undefined)
+	         y = height/2;
+		 
+	      this.cx = x;
+	      this.cy = y;
+	      this.paper = Raphael(container, width, height);
+	      this.body = clockBody(this.paper, x, y, radius);
+	      this.hr_hand = hrHand(this.paper, x, y, radius);
+	      this.min_hand = minHand(this.paper, x, y, radius);
+	      this.sec_hand = secHand(this.paper, x, y, radius);
+	      this.paper.setViewBox(0, 0, width, height);
+	      }
+    </script>
+  </head>
+  
+  <body>
+    <main>
+      <div id="Cards">
+       <!-- card one -->
+       <div id="one" class="card">
+        <section id="fig1"></section>
+        <section>
+          <p>In this tutorial we will learn to read time on a clock.</p>
+        </section>
+       </div>
+       
+       <!-- card two -->
+       <div id="two" class="card">
+	 <section>
+	   <h1>The Three Hands</h1>
+	 </section>
+	 <section>
+	   <p>A clock tells us time in <i>hour</i>, <i>minute</i> and, <i>second</i> using three hands that you see moving inside the clock.</p>
+	 </section>
+	 <section>
+	   <h2>The Hour Hand</h2> 
+	   <div id="fig2" class="sec2"></div>
+	   <p>Look at the clock, the smallest hand that you see is the <i>hour</i> hand. It is also the slowest moving hand.</p>
+	 </section>
+	 <section>
+	   <h2>The Minute Hand</h2>
+	   <div id="fig3" class="sec2"></div>
+	   <p>Out of the remaining two hands the hand that ticks slower is your <i>minute</i> hand.</p>
+	 </section>
+	 <section>
+	   <h2>The Second Hand</h2>
+	   <div id="fig4" class="sec2"></div>
+	   <p>It's of course the last hand that's left, the one that ticks the fastest.</p>
+	 </section>
+       </div>
+       
+       <!-- card 3 -->
+       <div id="three" class="card">
+	 <section><h1>Counting The Marks</h1></section>
+	 <section>
+	   <p></p>
+	 </section>
+       </div>
+       
+      </div>
+      
+    <script>	
+      /*var glowHour = hour.glow({"color":"red", "opacity":0});
+      var anim = Raphael.animation({opacity:0.5}, 1000).repeat(Infinity);
+      glowHour.animate(anim);  */
+      
+      for(let i=0; i<cards.length; ++i)
+          {if(i !== 0)
+	     {//hide all cards but the first one
+	      cards[i].style.display="none";}
+	   else
+	     {//store ids of figure containers and their width and height before hiding other cards
+	      for(let j=0; j < 4; ++j)
+                 {fig_id_array[j] = "fig" + (j+1);
+	          valx[j] = document.getElementById(fig_id_array[j]).offsetWidth;
+	          valy[j] = document.getElementById(fig_id_array[j]).offsetHeight;
+	          }
+              }
+	   }
+	      
+        
+      figarray[0] = new Clock(fig_id_array[0], radius=350, width=950, height=1000);
+      window.onload = function()
+                  {(function()
+	                  {var d = new Date;
+		           figarray[0].sec_hand.transform("").transform("R " + 6*(d.getSeconds()-1) + "," + figarray[0].cx + "," +figarray[0].cy).animate({transform: ((d.getSeconds() === 60) ? "" : `...r6 ${figarray[0].cx} ${figarray[0].cy}`)}, 750, "elastic");
+		           figarray[0].min_hand.transform("").transform("R " + (6*(d.getMinutes()+d.getSeconds()/60) -0.1) + "," + figarray[0].cx + "," +figarray[0].cy).animate({transform: ((d.getMinutes() === 60) ? "" : `...r0.1 ${figarray[0].cx} ${figarray[0].cy}`)}, 750);
+		           figarray[0].hr_hand.transform("").transform("R " +30*(((d.getHours() === 12 ? 0 : d.getHours()) + d.getMinutes()/60 + d.getSeconds()/3600)-1/3600) + "," + figarray[0].cx + "," +figarray[0].cy).animate({transform: `...r${1/3600} ${figarray[0].cx} ${figarray[0].cy}`}, 750);
+		           //glowHour.transform("").transform("R " +30*(((d.getHours() === 12 ? 0 : d.getHours()) + d.getMinutes()/60 + d.getSeconds()/3600)-1/3600) + "," + cx + "," +cy).animate({transform: `...r${1/3600} ${cx} ${cy}`}, 750);
+		           setTimeout(arguments.callee,1000);
+		           })();
+	            };  
+	              
+      for(let i=1; i < 4; ++i)
+          figarray[i] = new Clock(fig_id_array[i], radius=200);
+    </script>
+    </main>
+    
+    <footer id="jump">
+      <div id="back" onclick="backCard();">
+	<p>Back</p>
+      </div>
+      
+      <div id="next" onclick="nextCard">
+	<p onclick="nextCard();">Next</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+body
+   {background-color:/*#dcb5de;#3ddb84#6bdddd*/#fff880;
+    overflow:scroll;}
+main
+   {width:100%:
+    }
+   
+h1, h2
+  {text-align:center;
+   font-size:6.5em;
+   font-family:sans-serif;
+   color:#f98161;
+   box-sizing:border-box;
+   }
+h2
+  {font-size:5.5em;
+   color:#333333;
+   }
+   
+.card section+section
+   {width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:100px;
+    margin-top:70px;
+    
+    background-color:#2b7180;
+    font-family:serif;
+    border:10px solid #1c6371;
+    border-bottom-left-radius:5em;
+    border-top-right-radius:5em;
+    border-bottom-right-radius:5em;
+    box-shadow:-4px 7px 3px #074451;
+    box-sizing:border-box;}
+    
+.card section+section p
+   {/*background-color:#389;
+    font-family:serif;*/
+    font-size:80px;
+    padding:20px 30px;
+    
+    /*border:10px solid #278;*/
+    margin-top:auto;
+    margin-bottom:auto;
+    color:#beb;
+    text-align:center;
+    text-shadow:-1px 2px 2px #7a7;
+    
+    text-align:center;
+    line-height:130%;
+   /* border-bottom-left-radius:1.2em;
+    border-top-right-radius:1.2em;
+    border-bottom-right-radius:1.2em;
+    box-shadow:-4px 7px 3px #074451;
+    box-sizing:border-box;*/}
+    
+ul
+   {font-size:60px;
+    color:#beb;
+    text-shadow:-1px 2px 2px #7a7;}
+li
+   {margin:50px;}
+        
+#jump
+    {width:100%;
+     }
+     
+#back{float:left;
+      width:49.5%;
+      height:7em;
+      margin-bottom:10px;
+      border: 5px solid /*#59b8b8*/#a9d178;
+      background-color:/*#5dc0c0*/#f98161;
+      border-top-left-radius:30px;
+      border-top-right-radius:30px;
+      border-bottom-left-radius:30px;
+      border-bottom-right-radius:30px;
+      box-sizing:border-box;
+      font-family:sans-serif;
+      }
+      
+#next{float:right;
+      width:49.5%;
+      height:7em;
+      margin-bottom:10px;
+      border:5px solid /*#59b8b8*/#a9d178;
+      background-color:/*#5dc0c0*/#f98161;
+      border-top-left-radius:30px;
+      border-top-right-radius:30px;
+      border-bottom-left-radius:30px;
+      border-bottom-right-radius:30px;
+      box-sizing:border-box;
+      font-family:sans-serif;
+      }
+      
+div p
+   {font-size:3em;
+    padding:3px;
+    text-align:center;
+    margin-top:20px;}
+    
+.sec2 
+   {width:100%;
+    height:500px;
+    margin-bottom:50px;}
+    
+#fig1{height:1000px;}
