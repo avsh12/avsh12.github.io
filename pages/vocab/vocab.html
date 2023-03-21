@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+<title>Vocabulary</title>
+<script>
+class PopUpInfo extends HTMLElement
+     {constructor()
+         {super();
+          }
+      
+      connectedCallback()
+          {this.attachShadow({mode:"open"});
+
+          const list = document.createElement("div");
+          list.setAttribute("class", "word-wrapper");
+
+          const audio_button = list.appendChild(document.createElement("button"));
+          audio_button.setAttribute("class", "audio-wrapper");
+          const audio_svg_symbol = audio_button.appendChild(document.createElementNS("http://www.w3.org/2000/svg", "svg"));
+          audio_svg_symbol.setAttribute("width", "15");
+          audio_svg_symbol.setAttribute("height", "15");
+          const svg_defs = audio_svg_symbol.appendChild(document.createElementNS("http://www.w3.org/2000/svg", "use"));
+          svg_defs.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#audio-symbol");
+         
+          const audio_file = list.appendChild(document.createElement("audio"));
+          audio_file.setAttribute("id", this.getAttribute("id"));
+          audio_file.setAttribute("preload", "none");
+          const audio_source = audio_file.appendChild(document.createElement("source"));
+          audio_source.setAttribute("src", this.getAttribute("audio-source"));
+          audio_source.setAttribute("type", "audio/mpeg");
+
+          const word = list.appendChild(document.createElement("a"));
+          word.setAttribute("class", "word");
+          word.setAttribute("href", this.getAttribute("word-source"));
+          word.textContent = this.getAttribute("word");
+
+          const style = document.createElement("style");
+
+          style.textContent = `
+              .word{color:#4a7d95;
+                    font-size:20px;
+                    font-weight:500;
+                    text-decoration:none;
+                    }
+          `
+
+          this.shadowRoot.append(style, list);
+          }
+      }
+
+customElements.define("word-wrap", PopUpInfo);
+</script>
+<style>
+  body{font-family:sans;
+       font-size:17px;
+       line-height:27px;
+       }
+  .audio-wrapper{
+       display:inline;
+       }
+  button{border:none;
+       background:none;
+       }
+  .word{color:#4a7d95;
+       font-size:20px;
+       font-weight:500;
+       text-decoration:none;
+       }
+  a:hover{color:#2c60dd;
+       }
+  
+</style>
+
+<svg id="audio-symb" style="display:none"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="13" viewBox="0 0 15 13" fill="none" data-inject-url="https://www.merriam-webster.com/dist-cross-dungarees/2023-03-13_15-43-04-874702f6/images/svg/audio-pron-redesign.svg" class="svg replaced-svg">
+<defs>
+<symbol id="audio-symbol">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13.513 6.34363C13.513 4.21463 12.623 2.33405 10.7864 0.687267L11.4026 0C13.406 1.79629 14.436 3.91633 14.436 6.34363C14.436 8.77387 13.3787 10.9297 11.3318 12.7981L10.7095 12.1163C12.6005 10.3902 13.513 8.4697 13.513 6.34363ZM10.8305 6.33811C10.8305 5.19038 10.2301 3.91597 8.89573 2.50719L9.5659 1.87241C10.9804 3.36579 11.7536 4.85692 11.7536 6.33811C11.7536 8.50095 10.6077 9.83479 9.56034 10.9028L8.90129 10.2565C9.91606 9.22174 10.8305 8.11681 10.8305 6.33811ZM0 8.6107V4.0387H3.23077L6.46154 1.75408V10.959L3.11169 8.6107H0Z" fill="#4A7D95"></path>
+</symbol>
+</defs>
+</svg>
+</head>
+
+<body>
+  <ol>
+    <!--item 1-->
+    <li>
+     <button class="audio-wrapper" onclick="document.getElementById('cerule').play();">
+       <svg width="15" height="15"><use href="#audio-symbol"/></svg>
+     </button>
+     <audio id="cerule" preload="none"><source src="https://static.sfdict.com/audio/C02/C0282700.mp3" type="audio/mpeg">
+     </audio>
+     <a class="word" href="https://www.merriam-webster.com/dictionary/cerulean">Cerulean</a>: resembling the blue of the sky
+    </li>
+    <!--item 2-->
+    <li>
+      <button class="audio-wrapper" onclick="document.getElementById('azure').play();">
+        <svg width="15" height="15"><use href="#audio-symbol"/></svg>
+      </button>
+      <audio id="azure" preload="none"><source src="https://static.sfdict.com/audio/A08/A0873200.mp3" type="audio/mpeg">
+      </audio>
+      <a class="word" href="https://www.merriam-webster.com/dictionary/azure">Azure</a>: the blue color of the clear sky
+    </li>
+    <!--item 3-->
+    <li>
+      <button class="audio-wrapper" onclick="document.getElementById('chartreuse').play();">
+        <svg width="15" height="15"><use href="#audio-symbol"/></svg>
+      </button>
+      <audio id="chartreuse" preload="none"><source src="https://static.sfdict.com/audio/C03/C0342000.mp3" type="audio/mpeg">
+      </audio>
+      <a class="word" href="https://www.merriam-webster.com/dictionary/chartreuse">Chartreuse</a>
+      <ol>
+        <li>used for a usually green or yellow liqueur</li>
+        <li>a clear, light green with a yellowish tinge</li>
+      </ol>
+    </li>
+    <!--item 4-->
+    <li>
+      <button class="audio-wrapper" onclick="document.getElementById('impresario').play();">
+        <svg width="15" height="15"><use href="#audio-symbol"/></svg>
+      </button>
+      <audio id="impresario" preload="none"><source src="https://static.sfdict.com/audio/I00/I0084800.mp3" type="audio/mpeg">
+      </audio>
+      <a class="word" href="https://www.merriam-webster.com/dictionary/impresario">Impresario</a>
+      <ol>
+        <li>the promoter, manager, or conductor of an opera or concert company</li>
+        <li>a person who puts on or sponsors an entertainment (such as a television show or sports event)</li>
+      </ol>
+    </li>
+    <!--item 5-->
+    <li>
+      <button class="audio-wrapper" onclick="document.getElementById('surreal').play();">
+        <svg width="15" height="15"><use href="#audio-symbol"/></svg>
+      </button>
+      <audio id="surreal" preload="none"><source src="https://static.sfdict.com/audio/S11/S1158800.mp3" type="audio/mpeg">
+      </audio>
+      <a class="word" href="https://www.merriam-webster.com/dictionary/surreal">Surreal</a>
+      <ol>
+        <li>of, relating to, or characteristic of surrealism, an artistic and literary style; surrealistic</li>
+        <li>having the disorienting, hallucinatory quality of a dream; unreal; fantastic</li>
+      </ol>
+    </li>
+    <!--item 6-->
+    <li>
+      <button class="audio-wrapper" onclick="document.getElementById('conceited').play();">
+        <svg width="15" height="15"><use href="#audio-symbol"/></svg>
+      </button>
+      <audio id="conceited" preload="none"><source src="https://static.sfdict.com/audio/C07/C0718100.mp3" type="audio/mpeg">
+      </audio>
+      <a class="word" href="https://www.merriam-webster.com/dictionary/conceited">Conceited</a>: having an excessively favorable opinion of one's abilities, appearance, etc.
+    </li>
+    <!--item 7-->
+    <li>
+      <button class="audio-wrapper" onclick="document.getElementById('immaculate').play();">
+        <svg width="15" height="15"><use href="#audio-symbol"/></svg>
+      </button>
+      <audio id="immaculate" preload="none"><source src="https://static.sfdict.com/audio/I00/I0054800.mp3" type="audio/mpeg">
+      </audio>
+      <a class="word" href="https://www.merriam-webster.com/dictionary/immaculate">Immaculate</a>
+      <ol>
+        <li>free from spot or stain; spotlessly clean</li>
+        <li>free from moral blemish; pure</li>
+        <li>free from fault, flaw</li>
+      </ol>
+    </li>
+    <!--item 8-->
+    <li>
+      <button class="audio-wrapper" onclick="document.getElementById('diffident').play();">
+        <svg width="15" height="15"><use href="#audio-symbol"/></svg>
+      </button>
+      <audio id="diffident" preload="none"><source src="https://static.sfdict.com/audio/D02/D0295700.mp3" type="audio/mpeg">
+      </audio>
+      <a class="word" href="https://www.merriam-webster.com/dictionary/diffident">Diffident</a>
+      <ol>
+        <li>lacking confidence in one's own ability, worth, or fitness</li>
+        <li>restrained or reserved in manner, conduct, etc</li>
+      </ol>
+    </li>
+    <!--item 9-->
+    <li>
+      <button class="audio-wrapper" onclick="document.getElementById('euphemism').play();">
+        <svg width="15" height="15"><use href="#audio-symbol"/></svg>
+      </button>
+      <audio id="euphemism" preload="none"><source src="https://static.sfdict.com/audio/E03/E0344200.mp3" type="audio/mpeg">
+      </audio>
+      <a class="word" href="https://www.merriam-webster.com/dictionary/euphemism">Euphemism</a>
+      <ol>
+        <li>the substitution of a mild, indirect, or vague expression for one thought to be offensive</li>
+        <li>the expression so substituted<br/>
+            "To pass away" is a euphemism for "to die".
+        </li>
+      </ol>
+    </li>
+    <!--item 10-->
+    <li>
+      <button class="audio-wrapper" onclick="document.getElementById('confounded').play();">
+        <svg width="15" height="15"><use href="#audio-symbol"></use></svg>
+      </button>
+      <audio id="confounded" preload="none"><source src="https://static.sfdict.com/audio/C07/C0748400.mp3" type="audio/mpeg">
+      </audio>
+      <a class="word" href="https://www.merriam-webster.com/dictionary/confounded">Confounded</a>
+      <ol>
+        <li>bewildered; confused; perplexed</li>
+        <li>damned (used euphemistically)<br/>
+            That is a confounded lie.
+        </li>
+      </ol>
+    </li>
+    <!--item 11-->
+    <li>
+      <word-wrap id="downtown" word="Downtown" word-source="https://www.merriam-webster.com/dictionary/downtown" audio-source="https://static.sfdict.com/audio/D05/D0505500.mp3" >
+      </word-wrap>
+    </li>
+
+  </ol>
+</body>
+</html>
