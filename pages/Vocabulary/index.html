@@ -9,6 +9,10 @@ class PopUpInfo extends HTMLElement
          {super();
           }
       
+      playAudio(audio_id)
+         {document.getElementById(audio_id).play();
+          }
+      
       connectedCallback()
           {this.attachShadow({mode:"open"});
 
@@ -29,6 +33,8 @@ class PopUpInfo extends HTMLElement
           const audio_source = audio_file.appendChild(document.createElement("source"));
           audio_source.setAttribute("src", this.getAttribute("audio-source"));
           audio_source.setAttribute("type", "audio/mpeg");
+           
+          audio_button.onclick = playAudio(list.childNodes[1].id);
 
           const word = list.appendChild(document.createElement("a"));
           word.setAttribute("class", "word");
@@ -259,7 +265,7 @@ customElements.define("word-wrap", PopUpInfo);
     <li>
       <word-wrap id="umpteenth" word="Umpteenth" word-source="https://www.merriam-webster.com/dictionary/umpteenth" audio-source="https://static.sfdict.com/audio/U00/U0023500.mp3" >
       </word-wrap>: of an indefinitely large number in succession.<br/>
-         <span class="example">He was the umpteenth person to arrive.</span><br/>
+         <span class="example">He was the umpteenth person to arrive.</span>
          <span class="example">Or you can bear (or stand) to listen to your great aunt tell the same story for the umpteenth time if you have a kind soul.</span>
     </li>
     <!--item 17-->
