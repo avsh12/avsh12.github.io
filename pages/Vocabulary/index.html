@@ -44,7 +44,7 @@ class PopUpInfo extends HTMLElement
                     text-decoration:none;
                     display: inline;
                     }`
-          style.list = `.word-wrapper{display:inline;}`
+          list.style.display = "block";
 
           this.shadowRoot.append(style, list);
           }
@@ -73,8 +73,9 @@ customElements.define("word-wrap", PopUpInfo);
   .qualifier{color:#757575;
        }
   .example{color:#757575;
+       display:block;
        }
-  .quote{display="block"
+  .quote{display:block;
        }
   .quote_author{color:#757575;
        display:block;
