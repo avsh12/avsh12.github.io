@@ -9,7 +9,7 @@ class PopUpInfo extends HTMLElement
          {super();
           }
       
-      function playAudio(audio_id)
+      playAudio(audio_id)
          {document.getElementById(audio_id).play();
           }
       
@@ -19,6 +19,7 @@ class PopUpInfo extends HTMLElement
           const list = document.createElement("div");
           list.setAttribute("class", "word-wrapper");
 
+          //button containig the audio source
           const audio_button = list.appendChild(document.createElement("button"));
           audio_button.setAttribute("class", "audio-wrapper");
           const audio_svg_symbol = audio_button.appendChild(document.createElementNS("http://www.w3.org/2000/svg", "svg"));
@@ -27,6 +28,7 @@ class PopUpInfo extends HTMLElement
           const svg_defs = audio_svg_symbol.appendChild(document.createElementNS("http://www.w3.org/2000/svg", "use"));
           svg_defs.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#audio-symbol");
          
+          //create audio element in the list element
           const audio_file = list.appendChild(document.createElement("audio"));
           audio_file.setAttribute("id", this.getAttribute("id"));
           audio_file.setAttribute("preload", "none");
@@ -34,6 +36,7 @@ class PopUpInfo extends HTMLElement
           audio_source.setAttribute("src", this.getAttribute("audio-source"));
           audio_source.setAttribute("type", "audio/mpeg");
            
+          //play audio when clicked
           audio_button.onclick = playAudio(list.childNodes[1].id);
 
           const word = list.appendChild(document.createElement("a"));
