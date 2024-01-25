@@ -127,6 +127,8 @@ video
     }
 iframe
    {width:100%;
+    aspect-ratio:3/2;
+    margin-bottom:1em;
     border:2px solid #73ad21;
     }
     
